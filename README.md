@@ -1,8 +1,18 @@
-# Spark Streaming — Cotações de Bolsa → MySQL
+# Spark Streaming — Exercícios (Colab)
+
+## Exercício 1 — Cotações de Bolsa → MySQL
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_bolsa_mysql.ipynb)
 
 Exercício prático para Google Colab: simula um fluxo contínuo de cotações de ações (B3) com **Apache Spark Structured Streaming** e grava os dados em **MySQL instalado localmente no Colab**.
+
+## Exercício 2 — Voos de Companhias Aéreas + Watermark → PostgreSQL
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_voos_postgresql.ipynb)
+
+Simula um fluxo contínuo de eventos de voos e usa **watermark** com **janelas temporais** para calcular a **evolução dos voos ao longo do tempo** por companhia, gravando as agregações em **PostgreSQL instalado localmente no Colab**.
+
+**Abrir direto:** https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_voos_postgresql.ipynb
 
 ## Abrir no Colab Research
 
