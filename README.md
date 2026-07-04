@@ -2,7 +2,7 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_bolsa_mysql.ipynb)
 
-Exercício prático para Google Colab: simula um fluxo contínuo de cotações de ações (B3) com **Apache Spark Structured Streaming** e grava os dados em **MySQL**.
+Exercício prático para Google Colab: simula um fluxo contínuo de cotações de ações (B3) com **Apache Spark Structured Streaming** e grava os dados em **MySQL instalado localmente no Colab**.
 
 ## Abrir no Colab Research
 
@@ -12,6 +12,7 @@ Clique no badge acima ou acesse diretamente:
 
 ## O que você vai aprender
 
+- Instalar e configurar **MySQL Server** dentro do Colab
 - Buscar cotações em tempo quasi-real com `yfinance`
 - Simular um stream de dados (pasta monitorada pelo Spark)
 - Processar micro-batches com Structured Streaming
@@ -20,44 +21,29 @@ Clique no badge acima ou acesse diretamente:
 ## Pré-requisitos
 
 1. Conta no [Google Colab](https://colab.research.google.com/)
-2. Instância MySQL acessível pela internet (ex.: [PlanetScale](https://planetscale.com/), [Railway](https://railway.app/), [Aiven](https://aiven.io/) ou MySQL local + [ngrok](https://ngrok.com/))
-3. Abrir o notebook `exercicio_spark_streaming_bolsa_mysql.ipynb` no Colab
+2. Executar o notebook — **não precisa de banco externo nem Azure**
 
-## Configuração do MySQL
+## MySQL local no Colab
 
-Execute no seu banco antes de rodar o notebook:
+O notebook instala e configura automaticamente:
 
-```sql
-CREATE DATABASE IF NOT EXISTS bolsa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+| Parâmetro | Valor |
+|-----------|-------|
+| Host | `127.0.0.1` |
+| Porta | `3306` |
+| Banco | `bolsa` |
+| Usuário | `spark` |
+| Senha | `spark123` |
 
-USE bolsa;
-
-CREATE TABLE IF NOT EXISTS cotacoes (
-    id            BIGINT AUTO_INCREMENT PRIMARY KEY,
-    ticker        VARCHAR(20)  NOT NULL,
-    preco         DECIMAL(18,4) NOT NULL,
-    abertura      DECIMAL(18,4),
-    maxima        DECIMAL(18,4),
-    minima        DECIMAL(18,4),
-    volume        BIGINT,
-    moeda         VARCHAR(10),
-    bolsa         VARCHAR(50),
-    coletado_em   DATETIME     NOT NULL,
-    processado_em TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_ticker_data (ticker, coletado_em)
-);
-```
-
-O notebook também cria a tabela automaticamente via Python.
+> Os dados ficam na VM temporária do Colab. Ao encerrar a sessão, o MySQL e os dados são apagados.
 
 ## Como usar no Colab
 
 1. Clique no badge **Open in Colab** (ou no link acima)
-2. Configure os secrets em **🔑 Secrets** (ícone de chave à esquerda):
-   - `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`
-3. Execute todas as células em ordem (**Runtime → Run all**)
+2. **Runtime → Run all** — sem configurar secrets
+3. Aguarde a instalação do MySQL (~1–2 min na primeira célula)
 4. O **produtor** roda em background por ~2 minutos gerando arquivos JSON
-5. O **Spark Streaming** consome os arquivos e grava no MySQL
+5. O **Spark Streaming** consome os arquivos e grava no MySQL local
 6. Valide com a célula de consulta SQL
 
 ## Tickers padrão (B3)
@@ -79,11 +65,12 @@ yfinance (API) → Produtor Python → /content/stock_stream/*.json
                                               ↓
                               Spark Structured Streaming
                                               ↓
-                                    MySQL (JDBC append)
+                         MySQL local 127.0.0.1 (JDBC append)
 ```
 
 ## Observações
 
 - Em produção, a fonte seria Kafka, Kinesis ou WebSocket da corretora; aqui simulamos com arquivos para funcionar no Colab sem infra extra.
 - O driver JDBC MySQL é baixado automaticamente no notebook.
+- Se reiniciar o runtime, execute todas as células novamente (MySQL precisa ser reinstalado).
 - Pare o streaming com `query.stop()` ou interrompa a execução da célula.
