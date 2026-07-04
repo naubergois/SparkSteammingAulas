@@ -24,6 +24,16 @@ Simula uma eleição entre **Homer Simpson** e **Spock** com **apuração dinâm
 
 **Deploy fora do Colab (Docker Compose):** veja [`deploy/`](deploy/README.md) — sobe Kafka + MongoDB e roda o produtor + o job Spark via `spark-submit`.
 
+## Exercício 4 — Treino incremental de ML (Diabetes) + Spark Streaming → MinIO (S3)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_diabetes_minio.ipynb)
+
+Treina um classificador de **diabetes** de forma **incremental (online learning)** conforme os pacientes chegam por um fluxo (**Spark Structured Streaming**), salvando cada checkpoint do modelo no **MinIO** — o **S3 open source da AWS**. A cada micro-batch mostra a **acurácia** e a **superfície de separação** (fronteira de decisão) evoluindo ao longo do treino.
+
+**Abrir direto:** https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_diabetes_minio.ipynb
+
+**Deploy fora do Colab (Docker Compose):** veja [`deploy_diabetes/`](deploy_diabetes/README.md) — sobe o MinIO (S3) e roda o produtor + o job de treino via `spark-submit`.
+
 ## Abrir no Colab Research
 
 Clique no badge acima ou acesse diretamente:
