@@ -21,7 +21,7 @@ Clique no badge acima ou acesse diretamente:
 ## Pré-requisitos
 
 1. Conta no [Google Colab](https://colab.research.google.com/)
-2. Executar o notebook — **não precisa de banco externo nem Azure**
+2. Executar o notebook — **MySQL é instalado automaticamente na VM do Colab**
 
 ## MySQL local no Colab
 
@@ -40,7 +40,8 @@ O notebook instala e configura automaticamente:
 ## Como usar no Colab
 
 1. Clique no badge **Open in Colab** (ou no link acima)
-2. **Runtime → Run all** — sem configurar secrets
+2. **Runtime → Factory reset runtime** (importante se já abriu uma versão antiga)
+3. **Runtime → Run all**
 3. Aguarde a instalação do MySQL (~1–2 min na primeira célula)
 4. O **produtor** roda em background por ~2 minutos gerando arquivos JSON
 5. O **Spark Streaming** consome os arquivos e grava no MySQL local
