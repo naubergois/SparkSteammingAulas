@@ -14,6 +14,16 @@ Simula um fluxo contínuo de eventos de voos e usa **watermark** com **janelas t
 
 **Abrir direto:** https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_voos_postgresql.ipynb
 
+## Exercício 3 — Eleição Homer x Spock (Kafka + Spark Streaming → MongoDB)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_eleicao_mongodb.ipynb)
+
+Simula uma eleição entre **Homer Simpson** e **Spock** com **apuração dinâmica de votos por estado (UF)**. As urnas publicam votos no **Apache Kafka**, o **Spark Structured Streaming** agrega os totais por estado/candidato e grava a apuração no **MongoDB**, mostrando quem vence em cada estado e no voto popular.
+
+**Abrir direto:** https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_eleicao_mongodb.ipynb
+
+**Deploy fora do Colab (Docker Compose):** veja [`deploy/`](deploy/README.md) — sobe Kafka + MongoDB e roda o produtor + o job Spark via `spark-submit`.
+
 ## Abrir no Colab Research
 
 Clique no badge acima ou acesse diretamente:
