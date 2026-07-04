@@ -34,6 +34,16 @@ Treina um classificador de **diabetes** de forma **incremental (online learning)
 
 **Deploy fora do Colab (Docker Compose):** veja [`deploy_diabetes/`](deploy_diabetes/README.md) — sobe o MinIO (S3) e roda o produtor + o job de treino via `spark-submit`.
 
+## Exercício 5 — Sentimento online dos posts do X (@diariodonordeste)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_sentimento_x.ipynb)
+
+Coleta os posts do **X (Twitter)** do **Diário do Nordeste** e, com **Spark Structured Streaming**, classifica o **sentimento de cada notícia em tempo real** (POSITIVO / NEUTRO / NEGATIVO) usando um modelo multilíngue em PT-BR. Funciona com Bearer Token da API do X (posts reais) ou com posts de exemplo (sem token).
+
+**Abrir direto:** https://colab.research.google.com/github/naubergois/SparkSteammingAulas/blob/main/exercicio_spark_streaming_sentimento_x.ipynb
+
+**Deploy fora do Colab:** veja [`deploy_sentimento/`](deploy_sentimento/README.md) — coleta os posts e roda a análise de sentimento via `spark-submit`.
+
 ## Abrir no Colab Research
 
 Clique no badge acima ou acesse diretamente:
